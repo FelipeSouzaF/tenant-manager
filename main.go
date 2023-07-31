@@ -12,19 +12,17 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "your_app_name",
-	Short: "A brief description of your CLI application",
-	Long:  `A longer description of your CLI application.`,
+	Use:   "tenant",
+	Short: "Executa operações nos tenants",
 	Run: func(cmd *cobra.Command, args []string) {
 		// This function will be executed when your command is run
-		fmt.Println("Hello, world!")
+		fmt.Println("CLI tenant")
 	},
 }
 
 var subCmd = &cobra.Command{
-	Use:   "subcommand",
-	Short: "A brief description of your sub-command",
-	Long:  `A longer description of your sub-command.`,
+	Use:   "ls",
+	Short: "Lista todos os tenants",
 	Run: func(cmd *cobra.Command, args []string) {
 		// This function will be executed when the sub-command is run
 		fmt.Printf("Hello, %s!\n", flagName)
@@ -33,7 +31,8 @@ var subCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(subCmd)
-	subCmd.Flags().StringVarP(&flagName, "name", "n", "John", "Name to greet")
+
+	subCmd.Flags().StringVarP(&flagName, "name", "n", "nome_do_tenant", "Nome do tenant")
 }
 
 func main() {
