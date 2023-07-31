@@ -20,19 +20,41 @@ var rootCmd = &cobra.Command{
 	},
 }
 
-var subCmd = &cobra.Command{
+var lsCmd = &cobra.Command{
 	Use:   "ls",
 	Short: "Lista todos os tenants",
 	Run: func(cmd *cobra.Command, args []string) {
 		// This function will be executed when the sub-command is run
-		fmt.Printf("Hello, %s!\n", flagName)
+		fmt.Printf("Lista, %s!\n", flagName)
+	},
+}
+
+var addCmd = &cobra.Command{
+	Use:   "add",
+	Short: "Cria um tenant",
+	Run: func(cmd *cobra.Command, args []string) {
+		// This function will be executed when the sub-command is run
+		fmt.Printf("Cria, %s!\n", flagName)
+	},
+}
+
+var rmCmd = &cobra.Command{
+	Use:   "rm",
+	Short: "Remove um tenant",
+	Run: func(cmd *cobra.Command, args []string) {
+		// This function will be executed when the sub-command is run
+		fmt.Printf("Remove, %s!\n", flagName)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(subCmd)
+	rootCmd.AddCommand(lsCmd)
+	rootCmd.AddCommand(addCmd)
+	rootCmd.AddCommand(rmCmd)
 
-	subCmd.Flags().StringVarP(&flagName, "name", "n", "nome_do_tenant", "Nome do tenant")
+	lsCmd.Flags().StringVarP(&flagName, "name", "n", "nome_do_tenant", "Nome do tenant")
+	addCmd.Flags().StringVarP(&flagName, "name", "n", "nome_do_tenant", "Nome do tenant")
+	rmCmd.Flags().StringVarP(&flagName, "name", "n", "nome_do_tenant", "Nome do tenant")
 }
 
 func main() {
