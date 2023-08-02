@@ -5,6 +5,8 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+
+	"github.com/FelipeSouzaF/tenant-manager/db"
 )
 
 var (
@@ -25,6 +27,8 @@ var lsCmd = &cobra.Command{
 	Short: "Lista todos os tenants",
 	Run: func(cmd *cobra.Command, args []string) {
 		// This function will be executed when the sub-command is run
+		db.GetConnection()
+
 		fmt.Printf("Lista, %s!\n", flagName)
 	},
 }
