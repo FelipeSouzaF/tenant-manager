@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/FelipeSouzaF/tenant-manager/db"
+	"github.com/FelipeSouzaF/tenant-manager/env"
 )
 
 var (
@@ -62,6 +63,17 @@ func init() {
 }
 
 func main() {
+	environment := "dev"
+
+	err := env.InitConfig(environment)
+	if err != nil {
+		panic(err)
+	}
+
+	appConfig := env.GetConfig()
+
+	fmt.Printf("Running %s on port %d\n", appConfig.AppName, appConfig.Port)
+
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
